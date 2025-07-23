@@ -42,7 +42,7 @@ class _GridViewWidgetState extends State<GridViewWidget> {
     return GridView.builder(
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
-      //padding: EdgeInsets.only(top: 55, bottom: 12, left: 12, right: 9),
+      padding: EdgeInsets.only(bottom: 12, left: 12, right: 9),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisSpacing: 16,

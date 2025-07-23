@@ -13,14 +13,20 @@ class YourFriendsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 45),
-            Text(
-              'Your Online Friends',
-              style: TextStyle(fontSize: 30, color: Colors.red),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Your Online Friends',
+                style: TextStyle(fontSize: 30, color: Colors.red),
+              ),
             ),
             ListViewSeparted(),
-            Text(
-              'Your old Friends',
-              style: TextStyle(fontSize: 30, color: Colors.red),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Your old Friends',
+                style: TextStyle(fontSize: 30, color: Colors.red),
+              ),
             ),
             GridViewWidget(),
           ],
