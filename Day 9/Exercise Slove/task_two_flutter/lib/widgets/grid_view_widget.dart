@@ -34,79 +34,72 @@ class _GridViewWidgetState extends State<GridViewWidget> {
   void initState() {
     super.initState();
     friends = Friend.getListOfFriends();
-    isLikedList = List.generate(
-      friends.length,
-      (index) => false,
-    );
+    isLikedList = List.generate(friends.length, (index) => false);
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Friend> friends = Friend.getListOfFriends();
-    return Scaffold(
-      body: SizedBox(
-        height: 200,
-        child: GridView.builder(
-          padding: EdgeInsets.only(top: 55, bottom: 12, left: 12, right: 9),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 24,
-            crossAxisSpacing: 24,
-          ),
-          itemCount: friends.length,
-          itemBuilder: (context, index) {
-            return Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: List.filled(
-                  10,
-                  BoxShadow(
-                    blurRadius: 10,
-                    color: Colors.black.withAlpha(50),
-                    offset: Offset(0, 10),
-                  ),
-                ),
-                borderRadius: BorderRadius.circular(24),
-              ),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Stack(
-                      children: [
-                        Image.network(
-                          friends[index].image,
-                          height: 143,
-                          fit: BoxFit.cover,
-                        ),
-                        Positioned(
-                          top: 0,
-                          right: 0,
-                          child: IconButton(
-                            onPressed: () {
-                              setState(() {
-                                isLikedList[index] = !isLikedList[index];
-                              });
-                            },
-                            icon: Icon(
-                              isLikedList[index]
-                                  ? Icons.favorite
-                                  : Icons.favorite_border,
-                              color: Colors.red,
-                              size: 40,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 5),
-                  Text(friends[index].name),
-                ],
-              ),
-            );
-          },
-        ),
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      //padding: EdgeInsets.only(top: 55, bottom: 12, left: 12, right: 9),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: 16,
+        crossAxisSpacing: 16,
       ),
+      itemCount: friends.length,
+      itemBuilder: (context, index) {
+        return Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: List.filled(
+              10,
+              BoxShadow(
+                blurRadius: 10,
+                color: Colors.black.withAlpha(50),
+                offset: Offset(0, 10),
+              ),
+            ),
+            borderRadius: BorderRadius.circular(24),
+          ),
+          child: Column(
+            children: [
+              Expanded(
+                child: Stack(
+                  children: [
+                    Image.network(
+                      friends[index].image,
+                      height: 143,
+                      fit: BoxFit.cover,
+                    ),
+                    Positioned(
+                      top: 0,
+                      right: 0,
+                      child: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            isLikedList[index] = !isLikedList[index];
+                          });
+                        },
+                        icon: Icon(
+                          isLikedList[index]
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          color: Colors.red,
+                          size: 40,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 5),
+              Text(friends[index].name),
+            ],
+          ),
+        );
+      },
     );
   }
 }
